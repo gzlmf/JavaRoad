@@ -2,6 +2,7 @@ package com.poker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CardPlay {
@@ -9,19 +10,49 @@ public class CardPlay {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		boolean flag = true;
 		Scanner scanner = new Scanner(System.in);
 		CardPlay cardPlay = new CardPlay();
 		ArrayList<Poker> pokerSet = cardPlay.createPoker();
 		Player player1 = new Player();
 		System.out.println("请输入第1位玩家的ID和姓名:");
-		System.out.println("输入ID：");
-		player1.setPlayerId(scanner.nextInt());
+		while(flag) {
+			System.out.println("输入ID：");
+			try {
+				player1.setPlayerId(scanner.nextInt());
+				flag = false;
+			}catch (InputMismatchException e) {
+				// TODO: handle exception
+				System.out.println("请输入整数类型的ID！");
+				scanner.next();
+				continue;
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("未知错误");
+				continue;
+			}
+		}
 		System.out.println("输入名字：");
 		player1.setPlayerName(scanner.next());
 		Player player2 = new Player();
 		System.out.println("请输入第2位玩家的ID和姓名:");
-		System.out.println("输入ID：");
-		player2.setPlayerId(scanner.nextInt());
+		flag = true;
+		while(flag) {
+			System.out.println("输入ID：");
+			try {
+				player2.setPlayerId(scanner.nextInt());
+				flag = false;
+			}catch (InputMismatchException e) {
+				// TODO: handle exception
+				System.out.println("请输入整数类型的ID！");
+				scanner.next();
+				continue;
+			}catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("未知错误");
+				continue;
+			}
+		}
 		System.out.println("输入名字：");
 		player2.setPlayerName(scanner.next());
 		
